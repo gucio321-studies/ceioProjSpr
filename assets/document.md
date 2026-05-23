@@ -200,9 +200,9 @@ W poniższej tabeli zebrano najważniejsze wyniki wymulacji rozpadu kaonu $K^0_S
 
 | Parametr | Wartość | Niepewność | Jednostka |
 | --- | --- | --- | --- |
-| Masa $K^0_S$ | 498.094 | 0.072204 | MeV |
+| Masa $K^0_S$ | 498.094 | 0.072 | MeV |
 | Masa $\pi^{\pm}$ | 139.558 | - | MeV |
-| Czas życia $\tau$ | 90.122221 | 4.432650 | ps |
+| Czas życia $\tau$ | 90.12 | 4.43 | ps |
 ```
 
 # Literatura
