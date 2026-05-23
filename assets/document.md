@@ -46,7 +46,43 @@ Built for linuxx8664gcc on Apr 10 2026, 05:09:12
 From tags/6-38-04@6-38-04
 ```
 
+(szacowanie-niepewnosci)=
+## Metoda szacowania niepewności
+
+W ćwiczeniu wykorzystano metodę automatycznego szacowania niepewności.
+
+Niech `fit0`, `fit1` oraz `fit2` oznaczają instancje klasy `TF1`.
+Rozkład `fit0` jest jest sumą rozkładów `fit1` oraz `fit2` i został on dopasowany do danych.
+
+Aby dokonać szacowania niepewności na zadanym zakresie dla `fit1`, w pierwszym kroku należy przepisać odpowiednie
+parametry `fit0` do `fit1`
+
+Następnie należy wytworzyć odpowiednią macierz kowariancji dla `fit1` na podstawie macierzy kowariancji `fit0` poprzez wybranie odpowiednich elementów według następującego schematu:
+
+```{code-block} c++
+:linenos:
+
+    auto const covarianceMatrix = fitResult->GetCovarianceMatrix();
+    TMatrixDSym covSig(3);
+    for (int i = 0; i < 3; ++i)
+        for (int j = 0; j < 3; ++j)
+           covSig(i,j) = covarianceMatrix(i,j);
+
+    auto const signalError = signalFit->IntegralError(
+        sigMin, sigMax,
+        sigParams,
+        covSig.GetMatrixArray()
+    ) / normalization;
+```
+
+gdzie:
+- `fitResult` - obiekt uzyskiwany w wyniku dopasowania `fit0` do danych
+- `sigMin` oraz `sigMax` - arbitralnie zadane granice przedziału sygnałowego
+- `normalization` - normalizacja histogramu. Tu: szerokość binu.
+
 # Wyniki symulacji
+
+## Badanie rozkładu masy
 
 ```{code-block} yaml
 :caption: Średnie wartości masy dla poszczególnych cząstek.
@@ -59,15 +95,28 @@ Average Mass:
 ```
 
 ```{figure} ./mass_distribution.png
-Rozkład masy.
+:name: mass_distribution
+
+Rozkład masy niezmienniczej układu wraz z dopasowaną krzywą.
 ```
 
-```console
-Counts:
-	signal: 4080.564567 +- 83.782392
-	background: 1738.336608 +- 46.387295
-	signal-background ratio: 2.347396
+Do histogramu masy niezmienniczej {ref}`mass_distribution` dopasowano krzywą, która jest sumą funkcji Gaussa (opisującej sygnał) oraz wielomianu 2 stopnia (opisującego tło).
+Następnie wyznaczono liczbę faktycznych rozpadów (sygnałuu) oraz liczbę rozpadów uznanych za tło a także stosunek sygnału do tła.
+
+```{note}
+Sumowania dokonano na przedziale arbitralnie uznanym za przedział sygnałowy, to jest: $m_{sig} \in \left[487, 510\right]$.
 ```
+
+Otrzymano następujące wyniki wraz z [niepewnościami](#szacowanie-niepewnosci):
+
+```yaml
+Counts:
+    signal: 4080.564567 +- 83.782392
+    background: 1738.336608 +- 46.387295
+    signal-background ratio: 2.347396
+```
+
+
 
 ```{figure} ./length_distribution.png
 Rozkłąd długości rozpadu.
@@ -89,6 +138,11 @@ Zgodnie z [danymi otrzymanymi z symulacji](#mass) $m_{h1} = m_{h2} = 139.558045 
 masie mezonu $\pi^{\pm}$ ($m_{\pi^{\pm}} = 139.57039 MeV$).
 
 Natomiast cząstka rozpadająca się o masie $m_{sum} = 497.960529 MeV$ jest kaon $K^0$ ($m_{K^0} = 497.611 MeV$).
+
+Kaon $K^0_S$ może rozpadać się na dwa mezony $\pi^{+}$ i $\pi^{-}$ (z prawdopodobieństwem $\left(69.20 \pm 0.05\right)\%$) (najbardziej prawdopodobny rozpad). Z tego wynika że cząstki $h1$ i $h2$ to odpowiednio $\pi^{+}$ i $\pi^{-}$.
+
+## Rozkład masy niezmienniczej
+
 
 # Podsumowanie
 
