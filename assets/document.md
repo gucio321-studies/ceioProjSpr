@@ -136,7 +136,7 @@ Average Mass:
     sum: 498.094379 +- 0.072204
 ```
 
-```{figure} ./simulation/mass_distribution.png
+```{figure} ./mass_distribution.png
 :name: mass_distribution
 
 Rozkład masy niezmienniczej układu wraz z dopasowaną krzywą.
@@ -162,7 +162,7 @@ Counts:
 
 Na podstawie wzoru {eq}`L` wyznaczono rozkład długości rozpadów w przedziale sygnałowym, który przedstawiono na poniższym histogramie:
 
-```{figure} ./simulation/length_distribution.png
+```{figure} ./length_distribution.png
 Rozkłąd długości rozpadu.
 ```
 
@@ -170,7 +170,7 @@ Rozkłąd długości rozpadu.
 
 Wyznaczono czas życia dla każdego rozpadu według wzoru {eq}`t` i przedstawiono jego rozkład na poniższym histogramie:
 
-```{figure} ./simulation/lifetime_distribution.png
+```{figure} ./lifetime_distribution.png
 Rozkłąd czasu życia.
 ```
 
