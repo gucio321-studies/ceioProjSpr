@@ -207,6 +207,6 @@ W poniższej tabeli zebrano najważniejsze wyniki wymulacji rozpadu kaonu $K^0_S
 
 # Literatura
 
-1. Kod symulacyjny + plik danych https://github.com/gucio321-studies/ceioProj - rewizja `37f72814880db35210cb1032e09b54a89fb424f1`
-2. Root `TMath::C()` - https://root.cern.ch/doc/master/namespaceTMath.html#a22dbfc37d5e400dec5ac6b1351e2061a
-3. Light Unflavored Mesons by Particle Data Group (PDG) - https://pdg.lbl.gov/2025/tables/contents_tables.html dostęp 2026-05-23
+1. Kod symulacyjny + plik danych <https://github.com/gucio321-studies/ceioProj> - rewizja `37f72814880db35210cb1032e09b54a89fb424f1`
+2. Root `TMath::C()` - <https://root.cern.ch/doc/master/namespaceTMath.html#a22dbfc37d5e400dec5ac6b1351e2061a>
+3. Light Unflavored Mesons by Particle Data Group (PDG) - <https://pdg.lbl.gov/2025/tables/contents_tables.html> dostęp 2026-05-23
